@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Cerita Rahasia</title>
+  <style>
+    body {
+      background: linear-gradient(#0f0c29, #302b63, #24243e);
+      color: #fff;
+      font-family: 'Georgia', serif;
+      padding: 40px;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    #story {
+      font-size: 20px;
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+      min-height: 200px;
+      transition: all 0.4s ease;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .choice-btn {
+      background-color: #ffffff22;
+      color: white;
+      border: 1px solid white;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .choice-btn:hover {
+      background-color: #ffffff44;
+      transform: scale(1.05);
+    }
+
+    .heartbeat {
+      animation: heartbeat 1.2s infinite;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      70% { transform: scale(1); }
+    }
+
+    .glow {
+      text-shadow: 0 0 8px #ffffff88;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="glow">Cerita Rahasia</h1>
+  <div id="story" class="glow"></div>
+  <div id="choices"></div>
+
+  <script>
+    const storyEl = document.getElementById("story");
+    const choicesEl = document.getElementById("choices");
+
+    const storyLines = {
+      start: {
+        text: "Di antara bintang dan bayangan, lahir seorang penjaga rasa.\nBukan ksatria, bukan penyihir—melainkan jiwa yang menyimpan cahaya dalam diam.",
+        choices: [
+          { text: "Mulai perjalanan", next: "dimensiAwal" }
+        ]
+      },
+
+      dimensiAwal: {
+        text: "Di dimensi awal, dunia belum utuh.\nIa bertemu sosok bercahaya—hangat, menenangkan, berbeda dari lainnya.\nIa tak tahu nama perasaan itu, hanya... jantungnya berdetak lebih cepat.",
+        choices: [
+          { text: "Lanjutkan", next: "kehadiranOrangLain" }
+        ]
+      },
+
+      kehadiranOrangLain: {
+        text: "Namun cahaya itu telah dijaga oleh orang lain.\nSeseorang yang tak asing... seseorang yang ia sebut saudara.\nDan ia memilih: mundur, bukan karena kalah—tapi karena hormat.",
+        choices: [
+          { text: "Tinggalkan dimensi itu", next: "menghilang" },
+          { text: "Tetap mengamati dari jauh", next: "penjagaBayangan" }
+        ]
+      },
+
+      menghilang: {
+        text: "Ia pergi dari dimensi itu. Membawa luka, bukan dendam.\nTapi kenangan tak pernah mati. Setiap tawa gadis itu... masih terdengar di dalam dirinya.",
+        choices: [
+          { text: "Melangkah ke dimensi baru", next: "waktuBerlalu" }
+        ]
+      },
+
+      penjagaBayangan: {
+        text: "Ia menjadi penjaga bayangan.\nTidak hadir dalam hari-hari sang cahaya, tapi selalu ada di balik langit malam yang menatapnya.",
+        choices: [
+          { text: "Doakan dari jauh", next: "waktuBerlalu" }
+        ]
+      },
+
+      waktuBerlalu: {
+        text: "Waktu tak berhenti. Dimensi demi dimensi ia lewati.\nNamun satu hal tak berubah: perasaannya padanya.\nHingga suatu hari, gerbang dimensi baru terbuka.",
+        choices: [
+          { text: "Masuki dimensi itu", next: "pertemuanKembali" }
+        ]
+      },
+
+      pertemuanKembali: {
+        text: "Ia melihatnya lagi. Sendiri, bersinar, dan lebih indah dari kenangan yang ia simpan.\nApakah ini takdir kedua?",
+        choices: [
+          { text: "Dekati cahaya itu", next: "langkahBerani" },
+          { text: "Tunggu di kejauhan", next: "raguTunggu" }
+        ]
+      },
+
+      langkahBerani: {
+        text: "Kali ini, ia tak ingin hanya menjadi bayangan.\nDengan langkah ragu tapi pasti, ia hadir di sisinya. Sedikit demi sedikit.\nBukan untuk memiliki, hanya ingin dekat.",
+        choices: [
+          { text: "Tunjukkan perhatian kecil", next: "interaksiPertama" },
+          { text: "Simpan rasa dalam simbol", next: "pesanRahasia" }
+        ]
+      },
+
+      interaksiPertama: {
+        text: "Ia mulai menyapanya, menanyakan hal kecil.\nSang cahaya tersenyum. Senyum itu menyembuhkan luka lama.",
+        choices: [
+          { text: "Lanjutkan bicara", next: "pengakuan" },
+          { text: "Hanya jaga jarak aman", next: "pesanRahasia" }
+        ]
+      },
+
+      pesanRahasia: {
+        text: "Ia menulis cerita, diam-diam, menyelipkan perasaan dalam kisah seperti ini.\nIa berharap... sang cahaya membacanya suatu hari.",
+        heartbeat: true,
+        choices: [
+          { text: "Kirim cerita ini", next: "akhirRahasia" },
+          { text: "Simpan cerita untuk nanti", next: "akhirMenggantung" }
+        ]
+      },
+
+      raguTunggu: {
+        text: "Ia ragu. Tapi hati tak bisa diam selamanya.\nIa pun sadar... diam terlalu lama bisa membuat segalanya terlambat.",
+        choices: [
+          { text: "Beranikan diri bicara", next: "pengakuan" },
+          { text: "Biarkan waktu yang jawab", next: "akhirMenggantung" }
+        ]
+      },
+
+      pengakuan: {
+        text: "Ia berkata pelan, dengan mata penuh harap:\n'Aku nggak minta kamu balas rasa ini… cuma ingin kamu tahu, dari dulu sampai sekarang, aku selalu ada.'",
+        heartbeat: true,
+        choices: [
+          { text: "Tunggu jawabannya", next: "akhirBahagia" },
+          { text: "Pergi tanpa menunggu", next: "akhirTerbuka" }
+        ]
+      },
+
+      akhirBahagia: {
+        text: "Sang cahaya tersenyum, dan berkata:\n'Aku tahu. Aku cuma nunggu kamu bicara.'\nDan di situlah, dua dunia bertemu—bukan karena takdir, tapi karena keberanian.",
+        heartbeat: true,
+        choices: []
+      },
+
+      akhirRahasia: {
+        text: "Sang cahaya membaca kisah itu.\nMungkin ia mengerti, mungkin tidak.\nTapi bagi sang penjaga rasa, itu cukup. Karena akhirnya, rasa itu telah terucap.",
+        heartbeat: true,
+        choices: []
+      },
+
+      akhirMenggantung: {
+        text: "Waktu terus berjalan.\nMungkin suatu hari, sang cahaya akan tahu… mungkin juga tidak.\nTapi satu hal pasti: kisah ini akan tetap hidup di antara bintang-bintang.",
+        choices: []
+      },
+
+      akhirTerbuka: {
+        text: "Ia meninggalkan kisah itu begitu saja.\nTanpa tahu apakah sang cahaya akan membacanya.\nTapi ia percaya, cinta sejati tak harus selalu dimiliki.",
+        choices: []
+      }
+    };
+
+    function showStory(part) {
+      storyEl.textContent = "";
+      choicesEl.innerHTML = "";
+
+      // Efek heartbeat untuk bagian tertentu
+      if (storyLines[part].heartbeat) {
+        storyEl.classList.add("heartbeat");
+      } else {
+        storyEl.classList.remove("heartbeat");
+      }
+
+      typeText(storyLines[part].text, () => {
+        storyLines[part].choices.forEach(choice => {
+          const btn = document.createElement("button");
+          btn.textContent = choice.text;
+          btn.className = "choice-btn";
+          btn.onclick = () => showStory(choice.next);
+          choicesEl.appendChild(btn);
+        });
+      });
+    }
+
+    function typeText(text, callback) {
+      let i = 0;
+      storyEl.textContent = "";
+      const interval = setInterval(() => {
+        storyEl.textContent += text[i];
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          callback();
+        }
+      }, 30);
+    }
+
+    showStory("start");
+  </script>
+
+</body>
+</html>
